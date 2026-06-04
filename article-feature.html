@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Into the gale | A Livewire Feature</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Fraunces','Georgia','serif'], body:['Newsreader','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Fraunces',serif; } .ff-b{ font-family:'Newsreader',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2,h3{ font-family:'Fraunces',serif; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:inline-block; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    /* progress bar */
+    #bar{ position:fixed; top:0; left:0; height:3px; background:#B88E1E; width:0; z-index:80; transition:width .1s linear; }
+    /* hero */
+    .hero{ position:relative; height:100vh; min-height:620px; overflow:hidden; }
+    .hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .hero::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,8,6,.35) 0%, rgba(10,8,6,.25) 45%, rgba(10,8,6,.85) 100%); }
+    .hero-inner{ position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding:0 1.5rem 8vh; }
+    .scroll-cue{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:3; color:rgba(255,255,255,.7); animation:bob 2s ease-in-out infinite; }
+    @keyframes bob{ 0%,100%{ transform:translate(-50%,0) } 50%{ transform:translate(-50%,7px) } }
+    /* longform */
+    .prose{ font-family:'Newsreader',serif; }
+    .prose p{ font-size:1.32rem; line-height:1.74; color:#26211A; margin-bottom:1.6rem; }
+    .prose p.lead::first-letter{ float:left; font-family:'Fraunces',serif; font-weight:600; font-size:5.4rem; line-height:.74; padding:.4rem .55rem 0 0; color:#7A2E2E; }
+    .fullbleed{ width:100%; }
+    .fullbleed img{ width:100%; display:block; object-fit:cover; }
+    .bigquote{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(1.9rem,4.2vw,3rem); line-height:1.12; letter-spacing:-.02em; color:#16130E; }
+    .divider{ display:flex; align-items:center; justify-content:center; gap:14px; color:#B88E1E; margin:3.5rem 0; }
+    .divider::before,.divider::after{ content:''; height:1px; width:64px; background:#E4DFD4; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .follow-pill{ border:1px solid #16130E; color:#16130E; background:transparent; } .follow-pill:hover{ background:#16130E; color:#FBFAF6; } .follow-pill.is-following{ background:#16130E!important; color:#FBFAF6!important; }
+    .avatar{ object-fit:cover; background:#EEE9DF; }
+    .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
+    .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s; display:block; width:100%; height:100%; object-fit:cover; } .story:hover .imgz img{ transform:scale(1.04); }
+    .rule{ border-color:#E4DFD4; }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+  <div id="bar"></div>
+
+  <!-- minimal floating nav -->
+  <header class="absolute top-0 inset-x-0 z-30">
+    <div class="max-w-[1180px] mx-auto px-5 py-5 flex items-center justify-between">
+      <a href="index.html"><img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-9 md:h-10"></a>
+      <a href="index.html" class="navlink text-white/80 hover:text-white border border-white/30 px-4 h-9 flex items-center">Close ✕</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="assets/img/gale.jpg" alt="A yacht sailing into a gathering storm">
+    <div class="hero-inner">
+      <div class="kicker mb-5" style="color:#E7C25A">The Feature · Markets</div>
+      <h1 class="text-white font-500 leading-[1.02] max-w-4xl" style="font-family:'Fraunces',serif; font-size:clamp(2.4rem,6.5vw,5rem); letter-spacing:-.02em">Into the gale</h1>
+      <p class="ff-b text-white/85 italic mt-5 max-w-xl" style="font-size:clamp(1.05rem,2.4vw,1.4rem)">How Australia's contrarians are positioning for a market few see coming</p>
+      <div class="ts mt-6" style="color:rgba(255,255,255,.7)">BY CHRIS CONWAY · 14 MIN READ · MAY 2026</div>
+    </div>
+    <div class="scroll-cue"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" stroke-linecap="round" d="M12 5v14m0 0l6-6m-6 6l-6-6"/></svg></div>
+  </section>
+
+  <!-- BODY -->
+  <article class="prose px-5">
+    <div class="max-w-[680px] mx-auto pt-16">
+      <p class="lead">The wind was building well before the forecasters caught up. By the time the warnings reached the marinas, the most seasoned skippers were already reefed down and pointed into it — not away. That instinct, to lean toward the weather rather than run from it, is the through-line of every contrarian investor we spoke to over six weeks of conversations.</p>
+      <p>It is an unfashionable posture. The index has climbed a wall of worry for two years, and the crowd has been rewarded for buying every dip. But beneath a placid headline number, the dispersion is violent — and a small group of Australia's most respected managers believe the next twelve months will separate the lucky from the deliberate.</p>
+    </div>
+
+    <!-- full-bleed image -->
+    <figure class="fullbleed my-14">
+      <img src="assets/img/equities.jpg" alt="Market winners and losers board" class="h-[44vh] md:h-[64vh]">
+      <figcaption class="ff-m text-[11px] tracking-wide text-lw-muted mt-3 max-w-[680px] mx-auto px-5">Beneath a calm index, 2025 produced the widest gap between winners and losers in a decade. <span style="color:#A89F8E">Source: Livewire</span></figcaption>
+    </figure>
+
+    <div class="max-w-[680px] mx-auto">
+      <p>"Many shall be restored that now are fallen," Steve Johnson likes to quote, "and many shall fall that now are in honour." He is paraphrasing Horace by way of Benjamin Graham, and he means it literally: the leadership of the last cycle is rarely the leadership of the next.</p>
+
+      <div class="divider"><span class="ff-m text-xs tracking-widest">✦</span></div>
+
+      <blockquote class="my-12 text-center">
+        <p class="bigquote">"The market is paying a fortune for certainty. We're being paid to take the other side."</p>
+        <cite class="ts not-italic block mt-5 text-lw-muted">— A LIVEWIRE-INTERVIEWED CIO, MARCH 2026</cite>
+      </blockquote>
+
+      <p>That willingness to be early — and therefore, for a time, wrong — is the price of admission. Each manager framed it differently, but the shape was the same: concentrate where conviction is highest, size positions to survive the drawdown, and let time do the compounding the crowd is too impatient to wait for.</p>
+      <h2 class="ff-d text-3xl md:text-4xl font-500 leading-tight mt-12 mb-4" style="letter-spacing:-.015em">Three places the deliberate are looking</h2>
+      <p>The first is the unglamorous middle of the ASX — quality industrials that pulled back hard and now trade at multiples that assume permanent stagnation. The second is global tourism, where international arrivals have recovered to 97% of pre-pandemic levels while valuations languish. The third is the most contrarian of all: Australian technology, recently de-rated and largely left for dead.</p>
+    </div>
+
+    <!-- second full-bleed -->
+    <figure class="fullbleed my-14">
+      <img src="assets/img/energy.jpg" alt="Energy infrastructure at dawn" class="h-[40vh] md:h-[58vh]">
+      <figcaption class="ff-m text-[11px] tracking-wide text-lw-muted mt-3 max-w-[680px] mx-auto px-5">Western reindustrialisation is quietly redrawing the resource map. <span style="color:#A89F8E">Source: Livewire</span></figcaption>
+    </figure>
+
+    <div class="max-w-[680px] mx-auto pb-4">
+      <p>None of them pretend to know when the weather turns. What they share is a refusal to be positioned for only one outcome — and a conviction that the portfolios built in the calm are the ones that survive the gale.</p>
+      <p>"You don't get to choose the conditions," one manager told us as our conversation wrapped. "You only get to choose how you're rigged when they arrive."</p>
+
+      <!-- author -->
+      <div class="mt-12 pt-8 border-t rule flex items-start gap-4">
+        <img src="assets/img/contributors/chris-conway.jpg" class="avatar w-16 h-16 rounded-full flex-shrink-0">
+        <div class="flex-1">
+          <div class="flex items-center justify-between gap-3 mb-1"><a href="author.html" class="ff-d font-600 text-xl hover:text-lw-oxblood">Chris Conway</a><button class="follow-btn follow-pill px-4 py-1.5" data-compact data-follow="author:Chris Conway">Follow</button></div>
+          <p class="ff-b text-[15px] text-lw-muted leading-snug">Managing Editor at Livewire Markets. Writes long-form features on markets, managers and the people behind the money.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- More -->
+  <section class="max-w-[1180px] mx-auto px-5 mt-16">
+    <div class="flex items-center gap-3 mb-6"><span class="kicker text-lw-ink" style="color:#16130E">More Features</span><span class="flex-1 border-t rule"></span></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <article class="story group"><a href="article.html" class="imgz block aspect-[16/10] mb-3"><img src="assets/img/tax.jpg" alt=""></a><a href="topics.html" class="kicker">Wealth</a><a href="article.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">"A real sting in the tail" — the rules of investing rewritten</h3></a><div class="ts mt-1.5">By Vishal Teckchandani</div></article>
+      <article class="story group"><a href="article-video.html" class="imgz block aspect-[16/10] mb-3 relative"><img src="assets/img/video-banks.jpg" alt=""><span style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:54px;height:54px;border-radius:9999px;background:rgba(22,19,14,.78);display:grid;place-items:center"><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a><a href="topics.html" class="kicker">Video · Buy Hold Sell</a><a href="article-video.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">Is it time to ditch the banks?</h3></a><div class="ts mt-1.5">By Vishal Teckchandani</div></article>
+      <article class="story group"><a href="article.html" class="imgz block aspect-[16/10] mb-3"><img src="assets/img/retirement.jpg" alt=""></a><a href="topics.html" class="kicker">Retirement</a><a href="article.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">Retiring in 2026? Four smart moves to protect your lifestyle</h3></a><div class="ts mt-1.5">By Aaron Minney</div></article>
+    </div>
+  </section>
+
+  <footer class="bg-lw-ink text-lw-paper mt-16">
+    <div class="max-w-[1180px] mx-auto px-5 py-12">
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+        <div class="max-w-xs"><img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-10 mb-4"><p class="ff-b text-[15px]" style="color:rgba(251,250,246,.45)">Investment insights from Australia's best fund managers.</p></div>
+        <div class="grid grid-cols-3 gap-10 navlink" style="color:rgba(251,250,246,.6)">
+          <div><div class="text-lw-gold mb-3">Content</div><div class="space-y-2.5"><a href="topics.html" class="block hover:text-white">Topics</a><a href="contributors.html" class="block hover:text-white">Contributors</a><a href="article-feature.html" class="block hover:text-white">Features</a></div></div>
+          <div><div class="text-lw-gold mb-3">Company</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">About</a><a href="#" class="block hover:text-white">Contact</a></div></div>
+          <div><div class="text-lw-gold mb-3">Follow</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">LinkedIn</a><a href="#" class="block hover:text-white">YouTube</a></div></div>
+        </div>
+      </div>
+      <div class="border-t mt-10 pt-6 ts" style="border-color:rgba(251,250,246,.12); color:rgba(251,250,246,.35)">© 2026 LIVEWIRE MARKETS PTY LTD · GENERAL INFORMATION ONLY, NOT FINANCIAL ADVICE</div>
+    </div>
+  </footer>
+
+  <script>
+    // reading progress bar
+    (function(){ const bar=document.getElementById('bar'); const upd=()=>{ const h=document.documentElement.scrollHeight-innerHeight; bar.style.width=(h>0?(scrollY/h*100):0)+'%'; }; addEventListener('scroll',upd,{passive:true}); upd(); })();
+  </script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

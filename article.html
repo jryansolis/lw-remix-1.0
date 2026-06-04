@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"A real sting in the tail" — the rules of investing have been rewritten | Livewire</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Fraunces','Georgia','serif'], body:['Newsreader','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Fraunces',serif; } .ff-b{ font-family:'Newsreader',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2,h3{ font-family:'Fraunces',serif; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
+    .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s cubic-bezier(.2,.7,.2,1); display:block; width:100%; height:100%; object-fit:cover; }
+    .story:hover .imgz img{ transform:scale(1.04); }
+    .rule{ border-color:#E4DFD4; }
+    /* longform body */
+    .prose-body{ font-family:'Newsreader',serif; }
+    .prose-body p{ font-size:1.27rem; line-height:1.72; color:#26211A; margin-bottom:1.5rem; }
+    .prose-body p:first-of-type::first-letter{ float:left; font-family:'Fraunces',serif; font-weight:600; font-size:4.6rem; line-height:.78; padding:.35rem .5rem 0 0; color:#16130E; }
+    .prose-body a{ color:#7A2E2E; text-decoration:underline; text-underline-offset:2px; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .follow-pill{ border:1px solid #16130E; color:#16130E; background:transparent; }
+    .follow-pill:hover{ background:#16130E; color:#FBFAF6; }
+    .follow-pill.is-following{ background:#16130E!important; color:#FBFAF6!important; }
+    .follow-solid{ background:#B88E1E; color:#16130E; border:1px solid #B88E1E; }
+    .follow-solid:hover{ background:#16130E; color:#FBFAF6; border-color:#16130E; }
+    .follow-solid.is-following{ background:#16130E!important; color:#FBFAF6!important; border-color:#16130E!important; }
+    .author-tag{ position:relative; }
+    .lw-popover{ position:absolute; z-index:60; top:calc(100% + 12px); left:50%; transform:translate(-50%,-6px); width:290px; background:#fff; border:1px solid #E4DFD4; box-shadow:0 30px 60px -20px rgba(22,19,14,.4); padding:22px; opacity:0; visibility:hidden; transition:opacity .16s, transform .16s; text-align:center; }
+    .lw-popover.open{ opacity:1; visibility:visible; transform:translate(-50%,0); }
+    .ad{ background:#F2EEE5; border:1px solid #E4DFD4; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+    .ad-label{ font-family:'Spline Sans Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#B0A794; }
+    .avatar{ object-fit:cover; background:#EEE9DF; }
+    .share-btn{ width:40px; height:40px; border:1px solid #E4DFD4; display:grid; place-items:center; transition:all .15s; color:#3A352C; }
+    .share-btn:hover{ background:#16130E; color:#fff; border-color:#16130E; }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <div class="bg-lw-ink"><div class="max-w-[1180px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><div class="flex gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+
+  <header class="bg-lw-paper border-b border-lw-ink">
+    <div class="max-w-[1180px] mx-auto px-5 py-5 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-11 md:h-14"></a>
+      <nav class="hidden lg:flex items-center gap-7 navlink text-lw-sub">
+        <a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="article-feature.html" class="hover:text-lw-gold">Features</a><a href="article-video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a>
+      </nav>
+      <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
+    </div>
+  </header>
+
+  <article class="max-w-[720px] mx-auto px-5">
+    <header class="pt-10 text-center">
+      <div class="mb-4"><a href="topics.html" class="kicker">Wealth · Taxation</a></div>
+      <h1 class="text-[2.3rem] md:text-[3.4rem] leading-[1.04] font-500" style="letter-spacing:-.02em">"A real sting in the tail" — the rules of investing have been rewritten</h1>
+      <p class="ff-b text-xl md:text-2xl text-lw-sub leading-snug mt-5 max-w-2xl mx-auto" style="font-style:italic">Three major tax reforms are about to reshape how Australians build wealth. Here are the five charts that matter.</p>
+      <div class="w-10 h-px bg-lw-gold mx-auto my-6"></div>
+      <!-- byline w/ co-authors + popovers -->
+      <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 ff-b text-[15px]">
+        <span class="text-lw-muted">By</span>
+        <span class="author-tag inline-flex items-center">
+          <button data-popover-trigger class="inline-flex items-center gap-2 font-600 hover:text-lw-oxblood"><img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-7 h-7 rounded-full">Vishal Teckchandani</button>
+          <div class="lw-popover">
+            <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-16 h-16 rounded-full mx-auto mb-3">
+            <div class="ff-d font-600 text-lg leading-tight">Vishal Teckchandani</div>
+            <div class="kicker mb-3" style="color:#8C8474">Lead Investment Writer</div>
+            <p class="ff-b text-[15px] text-lw-muted leading-snug mb-4">Posts from this author will be added to your daily email digest and your homepage feed.</p>
+            <button class="follow-btn follow-solid w-full py-2.5 mb-3" data-follow="author:Vishal Teckchandani"><span data-follow-label>Follow</span></button>
+            <a href="author.html" class="ff-m text-[11px] uppercase tracking-wide underline">See all by Vishal</a>
+          </div>
+        </span>
+        <span class="text-lw-muted">&amp;</span>
+        <span class="author-tag inline-flex items-center">
+          <button data-popover-trigger class="inline-flex items-center gap-2 font-600 hover:text-lw-oxblood"><img src="assets/img/contributors/sara-allen.jpg" class="avatar w-7 h-7 rounded-full">Sara Allen</button>
+          <div class="lw-popover">
+            <img src="assets/img/contributors/sara-allen.jpg" class="avatar w-16 h-16 rounded-full mx-auto mb-3">
+            <div class="ff-d font-600 text-lg leading-tight">Sara Allen</div>
+            <div class="kicker mb-3" style="color:#8C8474">Contributing Editor</div>
+            <p class="ff-b text-[15px] text-lw-muted leading-snug mb-4">Posts from this author will be added to your daily email digest and your homepage feed.</p>
+            <button class="follow-btn follow-solid w-full py-2.5 mb-3" data-follow="author:Sara Allen"><span data-follow-label>Follow</span></button>
+            <a href="author.html" class="ff-m text-[11px] uppercase tracking-wide underline">See all by Sara</a>
+          </div>
+        </span>
+        <span class="ts">· MAY 13, 2026 · 8 MIN READ</span>
+      </div>
+      <!-- actions -->
+      <div class="flex items-center justify-center gap-2 mt-6">
+        <button class="share-btn" aria-label="Share on X"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.9 1.2h3.7l-8 9.1 9.4 12.5h-7.4l-5.8-7.6-6.6 7.6H.5l8.5-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.5h2L6.5 3.3H4.4l13.2 17.4z"/></svg></button>
+        <button class="share-btn" aria-label="LinkedIn"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V8h3v11zM6.5 6.7a1.8 1.8 0 110-3.5 1.8 1.8 0 010 3.5zM19 19h-3v-5.6c0-3.4-4-3.1-4 0V19h-3V8h3v1.8c1.4-2.6 7-2.8 7 2.5V19z"/></svg></button>
+        <button class="share-btn" aria-label="Copy link"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.6" stroke-linecap="round" d="M13.8 10.2a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1.2-1.2m-1.8-4.7a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1.2 1.2"/></svg></button>
+      </div>
+    </header>
+  </article>
+
+  <!-- Hero full-width-ish -->
+  <figure class="max-w-[980px] mx-auto px-5 my-10">
+    <div class="imgz aspect-[16/9]"><img src="assets/img/tax.jpg" alt="Tax reforms"></div>
+    <figcaption class="ts mt-3 text-center">Budget 2026 reshapes capital gains, negative gearing, and discretionary trusts. <span style="color:#A89F8E">Illustration: Livewire</span></figcaption>
+  </figure>
+
+  <article class="max-w-[720px] mx-auto px-5">
+    <div class="prose-body">
+      <p>The Labor Government argues these changes restore fairness by ensuring investors "only pay tax on their real capital gain." But the modifications will fundamentally reshape how Australians build wealth — and the implications extend far beyond property.</p>
+      <h2 class="ff-d text-3xl font-500 mt-12 mb-4 leading-tight" style="letter-spacing:-.015em">1. Capital gains tax: the end of the 50% discount</h2>
+      <p>The centrepiece reform replaces the longstanding 50% CGT discount with an inflation indexation method. Under the new regime, your cost base is adjusted for inflation using the Consumer Price Index — meaning you only pay tax on the real capital gain, not the nominal one.</p>
+      <p>On the surface, this sounds reasonable. But there's a catch: the government will also introduce a <a href="#">30% minimum tax on capital gains</a> from July 2027, regardless of your marginal tax rate.</p>
+
+      <!-- in-article ad -->
+      <div class="ad h-[260px] my-10"><span class="ad-label mb-1">Advertisement</span><span class="ff-d italic text-lw-muted text-sm">300 × 250</span></div>
+
+      <h2 class="ff-d text-3xl font-500 mt-12 mb-4 leading-tight" style="letter-spacing:-.015em">2. Negative gearing: new builds only</h2>
+      <p>From July 2027, negative gearing will be limited to newly constructed dwellings. Buyers of established properties will only be able to offset rental losses against other rental income — not against their salary or wages.</p>
+
+      <!-- pull quote -->
+      <blockquote class="my-10 text-center">
+        <div class="w-8 h-px bg-lw-gold mx-auto mb-5"></div>
+        <p class="ff-d text-3xl md:text-[2.4rem] font-400 leading-snug italic text-lw-ink">"Many shall be restored that now are fallen, and many shall fall that now are in honour."</p>
+        <cite class="ts not-italic block mt-4">BENJAMIN GRAHAM, AS QUOTED BY STEVE JOHNSON</cite>
+        <div class="w-8 h-px bg-lw-gold mx-auto mt-5"></div>
+      </blockquote>
+
+      <figure class="my-10">
+        <div class="imgz aspect-[16/9]"><img src="assets/img/property.jpg" alt="Property"></div>
+        <figcaption class="ts mt-3">Negative gearing will be restricted to newly built dwellings from July 2027.</figcaption>
+      </figure>
+
+      <p>The property sector has been bracing for this. But the ripple effects extend further than most realise — capital may redirect toward equities, superannuation, and other growth assets.</p>
+      <h2 class="ff-d text-3xl font-500 mt-12 mb-4 leading-tight" style="letter-spacing:-.015em">3. Discretionary trusts: the 30% minimum</h2>
+      <p>From July 2028, distributions from discretionary trusts to beneficiaries aged 18 and over will face a 30% minimum tax rate — effectively eliminating one of the most widely used wealth-planning structures in Australia.</p>
+      <p>For investors with long time horizons, the message is clear: adaptability matters more than ever. The rules have changed, and the strategies that served the last two decades may not serve the next two.</p>
+    </div>
+
+    <!-- tags -->
+    <div class="flex flex-wrap items-center gap-2 mt-10 pt-6 border-t rule">
+      <span class="ts mr-1">FILED UNDER</span>
+      <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Taxation">Taxation +</button>
+      <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Property">Property +</button>
+      <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Wealth">Wealth +</button>
+    </div>
+
+    <!-- author cards -->
+    <div class="mt-8 space-y-4">
+      <div class="border border-lw-line bg-white p-5 flex items-start gap-4">
+        <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-14 h-14 rounded-full flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-3 mb-1"><a href="author.html" class="ff-d font-600 text-lg hover:text-lw-oxblood">Vishal Teckchandani</a><button class="follow-btn follow-pill px-4 py-1.5" data-compact data-follow="author:Vishal Teckchandani">Follow</button></div>
+          <p class="ff-b text-[15px] text-lw-muted leading-snug">Lead Investment Writer & Presenter. 15+ years covering markets and property, with a focus on ETFs and personal finance.</p>
+        </div>
+      </div>
+      <div class="border border-lw-line bg-white p-5 flex items-start gap-4">
+        <img src="assets/img/contributors/sara-allen.jpg" class="avatar w-14 h-14 rounded-full flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-3 mb-1"><a href="author.html" class="ff-d font-600 text-lg hover:text-lw-oxblood">Sara Allen</a><button class="follow-btn follow-pill px-4 py-1.5" data-compact data-follow="author:Sara Allen">Follow</button></div>
+          <p class="ff-b text-[15px] text-lw-muted leading-snug">Contributing Editor with over a decade in finance and investments, previously at ETF Securities, BT and Macquarie.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- More -->
+  <section class="max-w-[1180px] mx-auto px-5 mt-14">
+    <div class="flex items-center gap-3 mb-6"><span class="kicker text-lw-ink" style="color:#16130E">More from Livewire</span><span class="flex-1 border-t rule"></span></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <article class="story group"><a href="article-video.html" class="imgz block aspect-[16/10] mb-3 relative"><img src="assets/img/video-banks.jpg" alt=""><span style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:54px;height:54px;border-radius:9999px;background:rgba(22,19,14,.78);display:grid;place-items:center"><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a><a href="topics.html" class="kicker">Video · Buy Hold Sell</a><a href="article-video.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">Is it time to ditch the banks?</h3></a><div class="ts mt-1.5">By Vishal Teckchandani</div></article>
+      <article class="story group"><a href="article.html" class="imgz block aspect-[16/10] mb-3"><img src="assets/img/retirement.jpg" alt=""></a><a href="topics.html" class="kicker">Retirement</a><a href="article.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">Retiring in 2026? Four smart moves to protect your lifestyle</h3></a><div class="ts mt-1.5">By Aaron Minney</div></article>
+      <article class="story group"><a href="article-feature.html" class="imgz block aspect-[16/10] mb-3"><img src="assets/img/gale.jpg" alt=""></a><a href="topics.html" class="kicker">The Feature</a><a href="article-feature.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">Into the gale: positioning for a market few see coming</h3></a><div class="ts mt-1.5">By Chris Conway</div></article>
+    </div>
+  </section>
+
+  <footer class="bg-lw-ink text-lw-paper mt-14">
+    <div class="max-w-[1180px] mx-auto px-5 py-12">
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+        <div class="max-w-xs"><img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-10 mb-4"><p class="ff-b text-[15px]" style="color:rgba(251,250,246,.45)">Investment insights from Australia's best fund managers.</p></div>
+        <div class="grid grid-cols-3 gap-10 navlink" style="color:rgba(251,250,246,.6)">
+          <div><div class="text-lw-gold mb-3">Content</div><div class="space-y-2.5"><a href="topics.html" class="block hover:text-white">Topics</a><a href="contributors.html" class="block hover:text-white">Contributors</a><a href="article-feature.html" class="block hover:text-white">Features</a></div></div>
+          <div><div class="text-lw-gold mb-3">Company</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">About</a><a href="#" class="block hover:text-white">Contact</a></div></div>
+          <div><div class="text-lw-gold mb-3">Follow</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">LinkedIn</a><a href="#" class="block hover:text-white">YouTube</a></div></div>
+        </div>
+      </div>
+      <div class="border-t mt-10 pt-6 ts" style="border-color:rgba(251,250,246,.12); color:rgba(251,250,246,.35)">© 2026 LIVEWIRE MARKETS PTY LTD · GENERAL INFORMATION ONLY, NOT FINANCIAL ADVICE</div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

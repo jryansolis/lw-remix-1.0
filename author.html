@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vishal Teckchandani | Livewire Markets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Fraunces','Georgia','serif'], body:['Newsreader','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Fraunces',serif; } .ff-b{ font-family:'Newsreader',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2,h3{ font-family:'Fraunces',serif; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
+    .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s; display:block; width:100%; height:100%; object-fit:cover; } .story:hover .imgz img{ transform:scale(1.04); }
+    .rule{ border-color:#E4DFD4; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .follow-pill{ border:1px solid #16130E; color:#16130E; background:transparent; } .follow-pill:hover{ background:#16130E; color:#FBFAF6; } .follow-pill.is-following{ background:#16130E!important; color:#FBFAF6!important; }
+    .follow-solid{ background:#B88E1E; color:#16130E; border:1px solid #B88E1E; } .follow-solid:hover{ background:#16130E; color:#FBFAF6; border-color:#16130E; } .follow-solid.is-following{ background:#16130E!important; color:#FBFAF6!important; border-color:#16130E!important; }
+    .avatar{ object-fit:cover; background:#EEE9DF; }
+    .tab{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#9A917F; padding:12px 2px; position:relative; cursor:pointer; }
+    .tab.is-active{ color:#16130E; } .tab.is-active::after{ content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:#B88E1E; }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <div class="bg-lw-ink"><div class="max-w-[1180px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><div class="flex gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+
+  <header class="bg-lw-paper border-b border-lw-ink">
+    <div class="max-w-[1180px] mx-auto px-5 py-5 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-11 md:h-14"></a>
+      <nav class="hidden lg:flex items-center gap-7 navlink text-lw-sub"><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="article-feature.html" class="hover:text-lw-gold">Features</a><a href="article-video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
+      <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
+    </div>
+  </header>
+
+  <div class="max-w-[1180px] mx-auto px-5 pt-5 ts"><a href="contributors.html" class="hover:text-lw-gold">CONTRIBUTORS</a> <span class="mx-1">›</span> <span class="text-lw-ink">VISHAL TECKCHANDANI</span></div>
+
+  <!-- Profile header -->
+  <header class="max-w-[1180px] mx-auto px-5 py-8 border-b border-lw-ink">
+    <div class="flex flex-col md:flex-row md:items-center gap-7">
+      <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-28 h-28 md:w-32 md:h-32 rounded-full flex-shrink-0">
+      <div class="flex-1">
+        <div class="kicker mb-2">Lead Investment Writer & Presenter</div>
+        <h1 class="text-4xl md:text-6xl font-500 leading-[0.98]" style="letter-spacing:-.02em">Vishal Teckchandani</h1>
+        <p class="ff-b text-lg text-lw-sub leading-snug max-w-2xl mt-3">Over 15 years covering financial markets and property, with a particular interest in ETFs and personal finance. Splits time between Australia and Canada. Previously at ETF Securities, BT Financial Group and Macquarie Group.</p>
+      </div>
+      <div class="flex md:flex-col items-center md:items-end gap-5 md:gap-3 flex-shrink-0">
+        <button class="follow-btn follow-solid px-7 py-3" data-follow="author:Vishal Teckchandani"><span data-follow-label>Follow</span></button>
+        <div class="flex gap-6 text-center"><div><div class="ff-d text-2xl leading-none">9.4k</div><div class="ts mt-1">Followers</div></div><div><div class="ff-d text-2xl leading-none">247</div><div class="ts mt-1">Wires</div></div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1180px] mx-auto px-5">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-x-12 py-8">
+      <div>
+        <div class="flex gap-7 border-b border-lw-line mb-2"><button class="tab is-active">Wires</button><button class="tab">Video</button><button class="tab">Funds</button><button class="tab">About</button></div>
+        <div class="divide-y rule">
+          <article class="story group flex gap-5 py-6">
+            <a href="article.html" class="imgz w-44 h-28 flex-shrink-0 hidden sm:block"><img src="assets/img/tax.jpg" alt=""></a>
+            <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Wealth</a><a href="article.html" class="block mt-0.5"><h3 class="hl text-2xl font-500 leading-snug">"A real sting in the tail" — the rules of investing have been rewritten</h3></a><p class="ff-b text-[15px] text-lw-muted leading-snug mt-1">Three major tax reforms are about to reshape how Australians build wealth.</p><div class="ts mt-1.5">MAY 13, 2026 · 8 MIN READ</div></div>
+          </article>
+          <article class="story group flex gap-5 py-6">
+            <a href="article-video.html" class="imgz w-44 h-28 flex-shrink-0 hidden sm:block relative"><img src="assets/img/video-banks.jpg" alt=""><span style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:44px;height:44px;border-radius:9999px;background:rgba(22,19,14,.78);display:grid;place-items:center"><svg class="w-4 h-4" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a>
+            <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Video · Buy Hold Sell</a><a href="article-video.html" class="block mt-0.5"><h3 class="hl text-2xl font-500 leading-snug">Is it time to ditch the banks? 7 ASX financials to watch</h3></a><div class="ts mt-1.5">MAY 9, 2026 · 12 MIN WATCH</div></div>
+          </article>
+          <article class="story group flex gap-5 py-6">
+            <a href="article.html" class="imgz w-44 h-28 flex-shrink-0 hidden sm:block"><img src="assets/img/markets.jpg" alt=""></a>
+            <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Markets</a><a href="article.html" class="block mt-0.5"><h3 class="hl text-2xl font-500 leading-snug">Your 2026 market predictions are in: insights from nearly 5,000 investors</h3></a><div class="ts mt-1.5">JAN 20, 2026 · 10 MIN READ</div></div>
+          </article>
+          <article class="story group flex gap-5 py-6">
+            <a href="article.html" class="imgz w-44 h-28 flex-shrink-0 hidden sm:block"><img src="assets/img/etf.jpg" alt=""></a>
+            <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">ETFs</a><a href="article.html" class="block mt-0.5"><h3 class="hl text-2xl font-500 leading-snug">How the 10 most-tipped ETFs have performed in 2025 so far</h3></a><div class="ts mt-1.5">NOV 12, 2025 · 7 MIN READ</div></div>
+          </article>
+        </div>
+        <a href="#" class="inline-block mt-7 border border-lw-ink px-6 py-2.5 navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Load more wires</a>
+      </div>
+
+      <aside class="space-y-9">
+        <div class="bg-lw-ink text-lw-paper p-6">
+          <span class="w-7 h-px bg-lw-gold block mb-4"></span>
+          <h4 class="ff-d text-xl font-500 leading-tight mb-2">Follow Vishal</h4>
+          <p class="ff-b text-[15px] mb-4" style="color:rgba(251,250,246,.6)">Add his new wires to your daily digest and homepage feed.</p>
+          <button class="follow-btn follow-solid w-full py-3" data-follow="author:Vishal Teckchandani"><span data-follow-label>Follow</span></button>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-4"><span class="kicker text-lw-ink" style="color:#16130E">Writes About</span><span class="flex-1 border-t rule"></span></div>
+          <div class="flex flex-wrap gap-2"><span class="kicker border border-lw-line px-3 py-1.5">ETFs</span><span class="kicker border border-lw-line px-3 py-1.5">Wealth</span><span class="kicker border border-lw-line px-3 py-1.5">Markets</span><span class="kicker border border-lw-line px-3 py-1.5">Retirement</span></div>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-4"><span class="kicker text-lw-ink" style="color:#16130E">Similar Writers</span><span class="flex-1 border-t rule"></span></div>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-3"><a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/carl-capolingua.jpg" class="avatar w-10 h-10 rounded-full"><span class="ff-b font-600 text-[15px] truncate">Carl Capolingua</span></a><button class="follow-btn follow-pill px-3 py-1" data-compact data-follow="author:Carl Capolingua">Follow</button></div>
+            <div class="flex items-center justify-between gap-3"><a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/sara-allen.jpg" class="avatar w-10 h-10 rounded-full"><span class="ff-b font-600 text-[15px] truncate">Sara Allen</span></a><button class="follow-btn follow-pill px-3 py-1" data-compact data-follow="author:Sara Allen">Follow</button></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="bg-lw-ink text-lw-paper">
+    <div class="max-w-[1180px] mx-auto px-5 py-12">
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+        <div class="max-w-xs"><img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-10 mb-4"><p class="ff-b text-[15px]" style="color:rgba(251,250,246,.45)">Investment insights from Australia's best fund managers.</p></div>
+        <div class="grid grid-cols-3 gap-10 navlink" style="color:rgba(251,250,246,.6)">
+          <div><div class="text-lw-gold mb-3">Content</div><div class="space-y-2.5"><a href="topics.html" class="block hover:text-white">Topics</a><a href="contributors.html" class="block hover:text-white">Contributors</a><a href="article-feature.html" class="block hover:text-white">Features</a></div></div>
+          <div><div class="text-lw-gold mb-3">Company</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">About</a><a href="#" class="block hover:text-white">Contact</a></div></div>
+          <div><div class="text-lw-gold mb-3">Follow</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">LinkedIn</a><a href="#" class="block hover:text-white">YouTube</a></div></div>
+        </div>
+      </div>
+      <div class="border-t mt-10 pt-6 ts" style="border-color:rgba(251,250,246,.12); color:rgba(251,250,246,.35)">© 2026 LIVEWIRE MARKETS PTY LTD · GENERAL INFORMATION ONLY, NOT FINANCIAL ADVICE</div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

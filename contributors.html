@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contributors | Livewire Markets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Fraunces','Georgia','serif'], body:['Newsreader','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Fraunces',serif; } .ff-b{ font-family:'Newsreader',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2,h3{ font-family:'Fraunces',serif; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .nh{ transition:color .15s ease; } .ctr:hover .nh{ color:#7A2E2E; }
+    .rule{ border-color:#E4DFD4; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .follow-pill{ border:1px solid #16130E; color:#16130E; background:transparent; } .follow-pill:hover{ background:#16130E; color:#FBFAF6; } .follow-pill.is-following{ background:#16130E!important; color:#FBFAF6!important; }
+    .avatar{ object-fit:cover; background:#EEE9DF; }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <div class="bg-lw-ink"><div class="max-w-[1180px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><div class="flex gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+
+  <header class="bg-lw-paper border-b border-lw-ink">
+    <div class="max-w-[1180px] mx-auto px-5 py-5 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-11 md:h-14"></a>
+      <nav class="hidden lg:flex items-center gap-7 navlink text-lw-sub"><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="text-lw-gold">Contributors</a><a href="article-feature.html" class="hover:text-lw-gold">Features</a><a href="article-video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
+      <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
+    </div>
+  </header>
+
+  <main class="max-w-[1180px] mx-auto px-5">
+    <!-- Hero -->
+    <section class="py-14 border-b border-lw-ink text-center max-w-3xl mx-auto">
+      <div class="kicker mb-4">The People</div>
+      <h1 class="text-5xl md:text-7xl font-500 leading-[0.98]" style="letter-spacing:-.02em">Contributors</h1>
+      <p class="ff-b text-xl md:text-2xl text-lw-sub italic leading-snug mt-5">Australia's most respected fund managers, analysts and economists — publishing on Livewire. Follow the writers you trust.</p>
+      <div class="flex justify-center gap-10 mt-8 ts"><span><span class="ff-d not-italic text-3xl text-lw-ink">740</span><br>Contributors</span><span><span class="ff-d not-italic text-3xl text-lw-ink">12k+</span><br>Wires</span><span><span class="ff-d not-italic text-3xl text-lw-ink">280k</span><br>Readers</span></div>
+    </section>
+
+    <!-- Top contributors -->
+    <section class="py-12">
+      <div class="flex items-center gap-3 mb-7"><span class="kicker text-lw-ink" style="color:#16130E">Featured Contributors</span><span class="flex-1 border-t rule"></span></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+        <!-- 1 -->
+        <div class="ctr flex gap-5 pb-8 border-b rule">
+          <a href="author.html"><img src="assets/img/contributors/roger-montgomery.jpg" class="avatar w-24 h-24 rounded-full flex-shrink-0"></a>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-3"><div><a href="author.html"><h3 class="nh text-2xl font-500 leading-tight">Roger Montgomery</h3></a><div class="ts mt-0.5" style="text-transform:none; letter-spacing:0">Founder & CIO, Montgomery Investment Management</div></div><button class="follow-btn follow-pill px-4 py-1.5 flex-shrink-0" data-compact data-follow="author:Roger Montgomery">Follow</button></div>
+            <p class="ff-b text-[15px] text-lw-sub leading-snug mt-2.5">Three decades in markets and author of the best-selling <em>Value.able</em>. Writes on quality investing and valuation.</p>
+            <div class="ts mt-2">412 WIRES · 18.2K FOLLOWERS</div>
+          </div>
+        </div>
+        <!-- 2 -->
+        <div class="ctr flex gap-5 pb-8 border-b rule">
+          <a href="author.html"><img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-24 h-24 rounded-full flex-shrink-0"></a>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-3"><div><a href="author.html"><h3 class="nh text-2xl font-500 leading-tight">Vishal Teckchandani</h3></a><div class="ts mt-0.5" style="text-transform:none; letter-spacing:0">Lead Investment Writer & Presenter, Livewire</div></div><button class="follow-btn follow-pill px-4 py-1.5 flex-shrink-0" data-compact data-follow="author:Vishal Teckchandani">Follow</button></div>
+            <p class="ff-b text-[15px] text-lw-sub leading-snug mt-2.5">15+ years covering markets and property, with a focus on ETFs and personal finance. Host of Buy Hold Sell.</p>
+            <div class="ts mt-2">247 WIRES · 9.4K FOLLOWERS</div>
+          </div>
+        </div>
+        <!-- 3 -->
+        <div class="ctr flex gap-5 pb-8 border-b rule md:border-b-0 md:pb-0">
+          <a href="author.html"><img src="assets/img/contributors/steve-johnson.jpg" class="avatar w-24 h-24 rounded-full flex-shrink-0"></a>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-3"><div><a href="author.html"><h3 class="nh text-2xl font-500 leading-tight">Steve Johnson</h3></a><div class="ts mt-0.5" style="text-transform:none; letter-spacing:0">Founder & CIO, Forager Funds</div></div><button class="follow-btn follow-pill px-4 py-1.5 flex-shrink-0" data-compact data-follow="author:Steve Johnson">Follow</button></div>
+            <p class="ff-b text-[15px] text-lw-sub leading-snug mt-2.5">Contrarian value investor known for plain-spoken commentary on global and Australian small caps.</p>
+            <div class="ts mt-2">198 WIRES · 11.6K FOLLOWERS</div>
+          </div>
+        </div>
+        <!-- 4 -->
+        <div class="ctr flex gap-5">
+          <a href="author.html"><img src="assets/img/contributors/shane-oliver.jpg" class="avatar w-24 h-24 rounded-full flex-shrink-0"></a>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-3"><div><a href="author.html"><h3 class="nh text-2xl font-500 leading-tight">Dr Shane Oliver</h3></a><div class="ts mt-0.5" style="text-transform:none; letter-spacing:0">Chief Economist, AMP</div></div><button class="follow-btn follow-pill px-4 py-1.5 flex-shrink-0" data-compact data-follow="author:Shane Oliver">Follow</button></div>
+            <p class="ff-b text-[15px] text-lw-sub leading-snug mt-2.5">One of Australia's most-quoted economists on rates, markets and the macro outlook.</p>
+            <div class="ts mt-2">356 WIRES · 22.1K FOLLOWERS</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Index -->
+    <section class="pb-16">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-t border-lw-ink pt-4 mb-7">
+        <div class="flex items-center gap-3"><span class="kicker text-lw-ink" style="color:#16130E">All Contributors A–Z</span></div>
+        <div class="ff-m text-[12px] tracking-wide text-lw-muted flex flex-wrap gap-x-2.5">A B C D H J K P R S T V</div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-0">
+        <!-- each row -->
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/aaron-minney.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Aaron Minney</span><span class="ts block" style="text-transform:none">Challenger · Retirement</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Aaron Minney">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/anna-dadic.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Anna Dadic</span><span class="ts block" style="text-transform:none">Livewire · Markets</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Anna Dadic">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/ben-richards.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Ben Richards</span><span class="ts block" style="text-transform:none">Seneca · Small Caps</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Ben Richards">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/carl-capolingua.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Carl Capolingua</span><span class="ts block" style="text-transform:none">Livewire · ETFs</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Carl Capolingua">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/chris-conway.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Chris Conway</span><span class="ts block" style="text-transform:none">Livewire · Features</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Chris Conway">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/david-thornton.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">David Thornton</span><span class="ts block" style="text-transform:none">Livewire · Income</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:David Thornton">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/hans-lee.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Hans Lee</span><span class="ts block" style="text-transform:none">Livewire · Macro</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Hans Lee">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/james-marlay.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">James Marlay</span><span class="ts block" style="text-transform:none">Co-Founder, Livewire</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:James Marlay">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/kerry-sun.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Kerry Sun</span><span class="ts block" style="text-transform:none">Livewire · Shares</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Kerry Sun">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/paul-miron.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Paul Miron</span><span class="ts block" style="text-transform:none">Msquared · Income</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Paul Miron">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/sara-allen.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Sara Allen</span><span class="ts block" style="text-transform:none">Livewire · Wealth</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Sara Allen">Follow</button>
+        </div>
+        <div class="ctr flex items-center justify-between gap-3 py-4 border-b rule">
+          <a href="author.html" class="flex items-center gap-3 min-w-0"><img src="assets/img/contributors/tom-stelzer.jpg" class="avatar w-11 h-11 rounded-full flex-shrink-0"><span class="min-w-0"><span class="nh block ff-d font-500 leading-tight truncate">Tom Stelzer</span><span class="ts block" style="text-transform:none">Livewire · Personal Finance</span></span></a>
+          <button class="follow-btn follow-pill px-3 py-1 flex-shrink-0" data-compact data-follow="author:Tom Stelzer">Follow</button>
+        </div>
+      </div>
+      <div class="text-center pt-9"><a href="#" class="inline-block border border-lw-ink px-6 py-3 navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Show all 740 contributors</a></div>
+    </section>
+  </main>
+
+  <footer class="bg-lw-ink text-lw-paper">
+    <div class="max-w-[1180px] mx-auto px-5 py-12">
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+        <div class="max-w-xs"><img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-10 mb-4"><p class="ff-b text-[15px]" style="color:rgba(251,250,246,.45)">Investment insights from Australia's best fund managers.</p></div>
+        <div class="grid grid-cols-3 gap-10 navlink" style="color:rgba(251,250,246,.6)">
+          <div><div class="text-lw-gold mb-3">Content</div><div class="space-y-2.5"><a href="topics.html" class="block hover:text-white">Topics</a><a href="contributors.html" class="block hover:text-white">Contributors</a><a href="article-feature.html" class="block hover:text-white">Features</a></div></div>
+          <div><div class="text-lw-gold mb-3">Company</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">About</a><a href="#" class="block hover:text-white">Contact</a></div></div>
+          <div><div class="text-lw-gold mb-3">Follow</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">LinkedIn</a><a href="#" class="block hover:text-white">YouTube</a></div></div>
+        </div>
+      </div>
+      <div class="border-t mt-10 pt-6 ts" style="border-color:rgba(251,250,246,.12); color:rgba(251,250,246,.35)">© 2026 LIVEWIRE MARKETS PTY LTD · GENERAL INFORMATION ONLY, NOT FINANCIAL ADVICE</div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
