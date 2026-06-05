@@ -115,27 +115,39 @@
     setTab(def);
   }
 
-  // Hover-to-preview: mount a muted, autoplaying YouTube iframe over a video
-  // card's thumbnail on hover (desktop only), remove it on mouse-out.
-  // Source resolution: the card's own [data-preview] wins; otherwise the
-  // nearest ancestor [data-list] (a playlist) is used. Value forms:
-  //   "VIDEOID"        → loops that single video, muted
-  //   "list:PLAYLIST"  → autoplays the playlist, muted
+  // Hover-to-preview: on hover (desktop only) play a clean, muted, looping
+  // mid-clip of a video card's content using the YouTube IFrame Player API —
+  //  • starts ~30% into the video and loops a ~9s window (not the start)
+  //  • the player is scaled up inside an overflow-hidden frame so YouTube's
+  //    title bar, controls and watermark are cropped out of view
+  // Source: the card's own [data-preview] wins; else nearest [data-list].
+  //   "VIDEOID" → that video · "list:PLAYLIST" → that playlist's current item
+  let ytLoading = false; const ytQueue = [];
+  function ensureYT(cb) {
+    if (window.YT && window.YT.Player) { cb(); return; }
+    ytQueue.push(cb);
+    if (ytLoading) return;
+    ytLoading = true;
+    const prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function () {
+      if (typeof prev === 'function') prev();
+      ytQueue.splice(0).forEach((f) => f());
+    };
+    const s = document.createElement('script');
+    s.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+
   function initVideoPreviews() {
     if (!window.matchMedia('(hover: hover)').matches) return; // skip touch devices
-    const srcFor = (val) => {
-      if (val.indexOf('list:') === 0) {
-        const id = val.slice(5);
-        return 'https://www.youtube-nocookie.com/embed/videoseries?list=' + id +
-          '&autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1';
-      }
-      return 'https://www.youtube-nocookie.com/embed/' + val +
-        '?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=' + val + '&start=1';
-    };
-    // Collect targets: any .imgz that has its own data-preview, or sits inside a [data-list].
-    const seen = new Set();
-    const targets = [];
-    document.querySelectorAll('.imgz[data-preview]').forEach((el) => { targets.push(el); seen.add(el); });
+    if (!document.getElementById('lw-prev-style')) {
+      const st = document.createElement('style');
+      st.id = 'lw-prev-style';
+      // scale crops the embed's chrome (title top / controls + watermark bottom)
+      st.textContent = '.lw-prev{position:absolute;inset:0;overflow:hidden;z-index:5;pointer-events:none;background:#0b0b0b;opacity:0;transition:opacity .35s ease}.lw-prev>iframe{position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.62);border:0}';
+      document.head.appendChild(st);
+    }
+    const seen = new Set(); const targets = [];
     document.querySelectorAll('[data-preview]').forEach((el) => {
       const z = el.matches('.imgz') ? el : el.querySelector('.imgz');
       if (z && !seen.has(z)) { targets.push(z); seen.add(z); }
@@ -146,26 +158,71 @@
 
     targets.forEach((z) => {
       const host = z.closest('[data-preview]') || z.closest('[data-list]');
-      const raw = (z.getAttribute('data-preview')) ||
+      const raw = z.getAttribute('data-preview') ||
                   (host && host.getAttribute('data-preview')) ||
                   (host && host.getAttribute('data-list') ? 'list:' + host.getAttribute('data-list') : null);
       if (!raw) return;
       if (getComputedStyle(z).position === 'static') z.style.position = 'relative';
       let timer;
+
       const mount = () => {
-        if (z.querySelector('.lw-prev')) return;
-        const f = document.createElement('iframe');
-        f.className = 'lw-prev';
-        f.src = srcFor(raw);
-        f.setAttribute('tabindex', '-1');
-        f.setAttribute('aria-hidden', 'true');
-        f.allow = 'autoplay; encrypted-media; picture-in-picture';
-        f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5;pointer-events:none;opacity:0;transition:opacity .25s ease;';
-        z.appendChild(f);
-        requestAnimationFrame(() => { f.style.opacity = '1'; });
+        if (z.__prev) return;
+        const wrap = document.createElement('div'); wrap.className = 'lw-prev';
+        const holder = document.createElement('div'); wrap.appendChild(holder);
+        z.appendChild(wrap);
+        const state = { wrap: wrap, player: null, interval: null, dead: false, start: null, vid: '' };
+        z.__prev = state;
+        ensureYT(() => {
+          if (state.dead) return;
+          const isList = raw.indexOf('list:') === 0;
+          const vars = { autoplay: 1, mute: 1, controls: 0, disablekb: 1, fs: 0, modestbranding: 1, rel: 0, iv_load_policy: 3, playsinline: 1 };
+          if (isList) { vars.listType = 'playlist'; vars.list = raw.slice(5); }
+          const opts = {
+            host: 'https://www.youtube-nocookie.com', width: '100%', height: '100%', playerVars: vars,
+            events: {
+              onReady: (e) => { try { e.target.mute(); e.target.playVideo(); } catch (_) {} },
+              onStateChange: (e) => {
+                if (e.data !== 1) return; // 1 = PLAYING
+                const p = e.target; if (state.dead) return;
+                wrap.style.opacity = '1';
+                let vid = ''; try { vid = (p.getVideoData() || {}).video_id || ''; } catch (_) {}
+                if (vid !== state.vid) {
+                  state.vid = vid;
+                  let d = 0; try { d = p.getDuration() || 0; } catch (_) {}
+                  state.dur = d;
+                  state.start = d > 40 ? Math.floor(d * 0.3) : (d > 14 ? 5 : 0);
+                  if (state.start > 0) { try { p.seekTo(state.start, true); } catch (_) {} }
+                }
+                if (!state.interval) {
+                  // Re-seek only to keep a long mid-window and to avoid the end
+                  // screen — a tight loop would re-buffer and flash YouTube chrome.
+                  state.interval = setInterval(() => {
+                    if (state.dead) return;
+                    try {
+                      const t = p.getCurrentTime();
+                      const past = t > state.start + 28;
+                      const nearEnd = state.dur > 0 && t > state.dur - 3;
+                      if (past || nearEnd || (state.start > 0 && t < state.start - 2)) p.seekTo(state.start, true);
+                    } catch (_) {}
+                  }, 1000);
+                }
+              }
+            }
+          };
+          if (!isList) opts.videoId = raw;
+          try { state.player = new YT.Player(holder, opts); } catch (_) {}
+        });
       };
-      const unmount = () => { const f = z.querySelector('.lw-prev'); if (f) f.remove(); };
-      z.addEventListener('mouseenter', () => { timer = setTimeout(mount, 220); });
+
+      const unmount = () => {
+        const st = z.__prev; if (!st) return;
+        st.dead = true; if (st.interval) clearInterval(st.interval);
+        try { if (st.player && st.player.destroy) st.player.destroy(); } catch (_) {}
+        if (st.wrap && st.wrap.parentNode) st.wrap.remove();
+        z.__prev = null;
+      };
+
+      z.addEventListener('mouseenter', () => { timer = setTimeout(mount, 240); });
       z.addEventListener('mouseleave', () => { clearTimeout(timer); unmount(); });
     });
   }
