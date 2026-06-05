@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = { theme: { extend: {
       fontFamily: { display:['Fraunces','Georgia','serif'], body:['Newsreader','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
@@ -24,138 +24,139 @@
     .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
     .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s; display:block; width:100%; height:100%; object-fit:cover; } .story:hover .imgz img{ transform:scale(1.04); }
     .rule{ border-color:#E4DFD4; }
-    .prose-body{ font-family:'Newsreader',serif; } .prose-body p{ font-size:1.27rem; line-height:1.72; color:#26211A; margin-bottom:1.5rem; } .prose-body a{ color:#7A2E2E; text-decoration:underline; }
+    .prose-body{ font-family:'Newsreader',serif; } .prose-body p{ font-size:1.18rem; line-height:1.7; color:#26211A; margin-bottom:1.4rem; }
     .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
     .follow-pill{ border:1px solid #16130E; color:#16130E; background:transparent; } .follow-pill:hover{ background:#16130E; color:#FBFAF6; } .follow-pill.is-following{ background:#16130E!important; color:#FBFAF6!important; }
     .follow-solid{ background:#B88E1E; color:#16130E; border:1px solid #B88E1E; } .follow-solid:hover{ background:#16130E; color:#FBFAF6; border-color:#16130E; } .follow-solid.is-following{ background:#16130E!important; color:#FBFAF6!important; border-color:#16130E!important; }
     .author-tag{ position:relative; }
-    .lw-popover{ position:absolute; z-index:60; top:calc(100% + 12px); left:50%; transform:translate(-50%,-6px); width:290px; background:#fff; border:1px solid #E4DFD4; box-shadow:0 30px 60px -20px rgba(22,19,14,.4); padding:22px; opacity:0; visibility:hidden; transition:opacity .16s, transform .16s; text-align:center; }
-    .lw-popover.open{ opacity:1; visibility:visible; transform:translate(-50%,0); }
+    .lw-popover{ position:absolute; z-index:60; top:calc(100% + 12px); left:0; width:290px; background:#fff; border:1px solid #E4DFD4; box-shadow:0 30px 60px -20px rgba(22,19,14,.4); padding:22px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .16s, transform .16s; text-align:center; }
+    .lw-popover.open{ opacity:1; visibility:visible; transform:translateY(0); }
     .avatar{ object-fit:cover; background:#EEE9DF; }
     .yt{ position:relative; padding-top:56.25%; background:#000; }
     .yt iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
-    /* transcript */
     .verdict{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.1em; padding:2px 7px; border:1px solid; display:inline-block; }
     .v-buy{ color:#2F7D52; border-color:#2F7D52; } .v-hold{ color:#B88E1E; border-color:#B88E1E; } .v-sell{ color:#A23B33; border-color:#A23B33; }
     .speaker{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#16130E; }
     .stock{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; border:1px solid #E4DFD4; padding:2px 7px; color:#3A352C; }
+    /* pinned player */
+    .video-rail{ }
+    @media (min-width:1024px){ .video-rail{ position:sticky; top:84px; align-self:start; } }
+    /* mobile: promote rail children into the grid so the player can pin across the whole transcript */
+    @media (max-width:1023px){
+      .video-rail{ display:contents; }
+      .video-pin{ position:sticky; top:0; z-index:30; background:#FBFAF6; padding-bottom:.5rem; box-shadow:0 10px 18px -14px rgba(22,19,14,.5); }
+    }
   </style>
 </head>
 <body class="text-lw-ink font-body">
 
-  <div class="bg-lw-ink"><div class="max-w-[1180px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><div class="flex gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+  <div class="bg-lw-ink"><div class="max-w-[1240px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><div class="flex gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
 
   <header class="bg-lw-paper border-b border-lw-ink">
-    <div class="max-w-[1180px] mx-auto px-5 py-5 flex items-center justify-between gap-6">
-      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-11 md:h-14"></a>
-      <nav class="hidden lg:flex items-center gap-7 navlink text-lw-sub"><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="article-feature.html" class="hover:text-lw-gold">Features</a><a href="article-video.html" class="text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
+    <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="income-series.html" class="hover:text-lw-gold">Income&nbsp;Series</a><a href="video.html" class="text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
       <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
     </div>
   </header>
 
-  <article class="max-w-[860px] mx-auto px-5">
-    <header class="pt-9 text-center">
-      <div class="mb-3"><a href="topics.html" class="kicker">▶ Video · Buy Hold Sell</a></div>
-      <h1 class="text-[2rem] md:text-[2.9rem] leading-[1.06] font-500" style="letter-spacing:-.02em">Is it time to ditch the banks? 7 ASX financials stocks to watch</h1>
-      <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 ff-b text-[15px] mt-5">
-        <span class="text-lw-muted">Presented by</span>
-        <span class="author-tag inline-flex items-center">
-          <button data-popover-trigger class="inline-flex items-center gap-2 font-600 hover:text-lw-oxblood"><img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-7 h-7 rounded-full">Vishal Teckchandani</button>
-          <div class="lw-popover">
-            <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-16 h-16 rounded-full mx-auto mb-3">
-            <div class="ff-d font-600 text-lg leading-tight">Vishal Teckchandani</div>
-            <div class="kicker mb-3" style="color:#8C8474">Lead Presenter</div>
-            <p class="ff-b text-[15px] text-lw-muted leading-snug mb-4">Posts from this author will be added to your daily email digest and your homepage feed.</p>
-            <button class="follow-btn follow-solid w-full py-2.5 mb-3" data-follow="author:Vishal Teckchandani"><span data-follow-label>Follow</span></button>
-            <a href="author.html" class="ff-m text-[11px] uppercase tracking-wide underline">See all by Vishal</a>
-          </div>
-        </span>
-        <span class="ts">· MAY 9, 2026 · 12 MIN WATCH</span>
-      </div>
-    </header>
-  </article>
-
-  <!-- Video embed -->
-  <div class="max-w-[980px] mx-auto px-5 my-8">
-    <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/8pnxQ22Zsck?rel=0" title="Buy Hold Sell: Is it time to ditch the banks?" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-    <div class="flex flex-wrap items-center gap-2 mt-4">
-      <span class="ts mr-1">STOCKS DISCUSSED</span>
-      <span class="stock">CGF</span><span class="stock">CPU</span><span class="stock">ASX</span><span class="stock">MQG</span><span class="stock">GQG</span><span class="stock">CBA</span><span class="stock">NAB</span>
+  <!-- Title block -->
+  <div class="max-w-[1240px] mx-auto px-5 pt-8 pb-6">
+    <div class="mb-3"><a href="video.html" class="kicker">▶ Video · Buy Hold Sell</a></div>
+    <h1 class="text-[2rem] md:text-[2.9rem] leading-[1.05] font-500 max-w-4xl" style="letter-spacing:-.02em">Is it time to ditch the banks? 7 ASX financials stocks to watch</h1>
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 ff-b text-[15px] mt-4">
+      <span class="text-lw-muted">Presented by</span>
+      <span class="author-tag inline-flex items-center">
+        <button data-popover-trigger class="inline-flex items-center gap-2 font-600 hover:text-lw-oxblood"><img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-7 h-7 rounded-full">Vishal Teckchandani</button>
+        <div class="lw-popover">
+          <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-16 h-16 rounded-full mx-auto mb-3">
+          <div class="ff-d font-600 text-lg leading-tight">Vishal Teckchandani</div>
+          <div class="kicker mb-3" style="color:#8C8474">Lead Presenter</div>
+          <p class="ff-b text-[15px] text-lw-muted leading-snug mb-4">Posts from this author will be added to your daily email digest and your homepage feed.</p>
+          <button class="follow-btn follow-solid w-full py-2.5 mb-3" data-follow="author:Vishal Teckchandani"><span data-follow-label>Follow</span></button>
+          <a href="author.html" class="ff-m text-[11px] uppercase tracking-wide underline">See all by Vishal</a>
+        </div>
+      </span>
+      <span class="ts">· MAY 9, 2026 · 12 MIN WATCH</span>
     </div>
   </div>
 
-  <article class="max-w-[720px] mx-auto px-5">
+  <!-- Watch layout: pinned player + scrolling transcript -->
+  <div class="max-w-[1240px] mx-auto px-5 grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12 pb-12">
+
+    <!-- VIDEO COLUMN (sticky on desktop) -->
+    <div class="video-rail">
+      <div class="video-pin">
+        <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/8pnxQ22Zsck?rel=0" title="Buy Hold Sell: Is it time to ditch the banks?" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 mt-4">
+        <span class="ts mr-1">STOCKS DISCUSSED</span>
+        <span class="stock">CGF</span><span class="stock">CPU</span><span class="stock">ASX</span><span class="stock">MQG</span><span class="stock">GQG</span><span class="stock">CBA</span><span class="stock">NAB</span>
+      </div>
+      <div class="flex items-center justify-between border-t rule mt-4 pt-4">
+        <div class="flex items-center gap-4 ts"><span class="inline-flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.6" stroke-linecap="round" d="M8 12h8M8 8h8m-8 8h5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>42</span><span class="inline-flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.6" d="M12 21s-7.5-4.6-9.5-9C1 8.5 3 5 6.5 5 8.7 5 10.5 6.4 12 8c1.5-1.6 3.3-3 5.5-3C21 5 23 8.5 21.5 12c-2 4.4-9.5 9-9.5 9z"/></svg>318</span></div>
+        <button class="follow-btn follow-pill px-4 py-1.5">Share</button>
+      </div>
+    </div>
+
+    <!-- TRANSCRIPT COLUMN -->
     <div class="prose-body">
-      <p>The banks have carried the ASX 200 for two years — but with valuations stretched and net interest margins under pressure, are the easy gains behind us? In this episode of <em>Buy Hold Sell</em>, we put seven of the market's most-watched financials to two leading fund managers and ask the only question that matters: buy, hold, or sell?</p>
-      <p>Below the video, an edited transcript of the calls.</p>
-    </div>
+      <p>The banks have carried the ASX 200 for two years — but with valuations stretched and margins under pressure, are the easy gains behind us? We put seven of the market's most-watched financials to two leading fund managers: buy, hold, or sell?</p>
 
-    <!-- Edited transcript -->
-    <div class="mt-10">
-      <div class="flex items-center gap-3 mb-5"><span class="kicker text-lw-ink" style="color:#16130E">Edited Transcript</span><span class="flex-1 border-t rule"></span></div>
-
+      <div class="flex items-center gap-3 mt-7 mb-1"><span class="kicker text-lw-ink" style="color:#16130E">Edited Transcript</span><span class="flex-1 border-t rule"></span></div>
       <div class="divide-y rule">
-        <!-- segment -->
-        <div class="py-6">
-          <div class="flex items-center justify-between gap-3 mb-2">
-            <h3 class="ff-d text-2xl font-500">Commonwealth Bank <span class="ff-m text-base text-lw-muted">(CBA)</span></h3>
-          </div>
-          <div class="space-y-4 ff-b text-[1.15rem] leading-relaxed text-lw-sub">
-            <p><span class="speaker">Vishal Teckchandani</span> — CBA is trading on a forward P/E north of 28x. Is the most expensive bank in the world a buy, hold or sell?</p>
-            <p><span class="speaker">Steve Johnson</span> <span class="verdict v-sell ml-1">Sell</span><br>It's a wonderful business at an impossible price. You're paying a tech multiple for low-single-digit earnings growth. I can't make the numbers work.</p>
-            <p><span class="speaker">Carl Capolingua</span> <span class="verdict v-hold ml-1">Hold</span><br>The chart says don't fight it — the uptrend is intact and dividends keep showing up. I'd hold, but I wouldn't be adding here.</p>
-          </div>
+        <div class="py-5">
+          <h3 class="ff-d text-xl font-500 mb-2">Commonwealth Bank <span class="ff-m text-sm text-lw-muted">(CBA)</span></h3>
+          <p class="text-[1.08rem]" style="margin-bottom:1rem"><span class="speaker">Vishal Teckchandani</span> — CBA trades on a forward P/E north of 28x. Is the most expensive bank in the world a buy, hold or sell?</p>
+          <p class="text-[1.08rem]" style="margin-bottom:1rem"><span class="speaker">Steve Johnson</span> <span class="verdict v-sell ml-1">Sell</span><br>A wonderful business at an impossible price. You're paying a tech multiple for low-single-digit growth.</p>
+          <p class="text-[1.08rem]"><span class="speaker">Carl Capolingua</span> <span class="verdict v-hold ml-1">Hold</span><br>The uptrend is intact and the dividends keep coming. I'd hold, but I wouldn't be adding here.</p>
         </div>
-
-        <div class="py-6">
-          <h3 class="ff-d text-2xl font-500 mb-2">Macquarie Group <span class="ff-m text-base text-lw-muted">(MQG)</span></h3>
-          <div class="space-y-4 ff-b text-[1.15rem] leading-relaxed text-lw-sub">
-            <p><span class="speaker">Steve Johnson</span> <span class="verdict v-buy ml-1">Buy</span><br>The only one of the majors with genuine global optionality — infrastructure, green energy, asset management. The earnings are lumpy, but the runway is long.</p>
-            <p><span class="speaker">Carl Capolingua</span> <span class="verdict v-buy ml-1">Buy</span><br>Agreed. It's been basing for six months and just broke out on volume. Momentum and fundamentals finally agree.</p>
-          </div>
+        <div class="py-5">
+          <h3 class="ff-d text-xl font-500 mb-2">Macquarie Group <span class="ff-m text-sm text-lw-muted">(MQG)</span></h3>
+          <p class="text-[1.08rem]" style="margin-bottom:1rem"><span class="speaker">Steve Johnson</span> <span class="verdict v-buy ml-1">Buy</span><br>The only major with genuine global optionality — infrastructure, green energy, asset management.</p>
+          <p class="text-[1.08rem]"><span class="speaker">Carl Capolingua</span> <span class="verdict v-buy ml-1">Buy</span><br>It's based for six months and just broke out on volume. Momentum and fundamentals finally agree.</p>
         </div>
-
-        <div class="py-6">
-          <h3 class="ff-d text-2xl font-500 mb-2">GQG Partners <span class="ff-m text-base text-lw-muted">(GQG)</span></h3>
-          <div class="space-y-4 ff-b text-[1.15rem] leading-relaxed text-lw-sub">
-            <p><span class="speaker">Carl Capolingua</span> <span class="verdict v-buy ml-1">Buy</span><br>A 9% yield, net inflows, and it's trading at a discount to global peers. The market is pricing in key-person risk that I think is overdone.</p>
-            <p><span class="speaker">Steve Johnson</span> <span class="verdict v-hold ml-1">Hold</span><br>I like it, but fund-flow businesses can turn quickly. I'd want to own it cheaper.</p>
-          </div>
+        <div class="py-5">
+          <h3 class="ff-d text-xl font-500 mb-2">GQG Partners <span class="ff-m text-sm text-lw-muted">(GQG)</span></h3>
+          <p class="text-[1.08rem]" style="margin-bottom:1rem"><span class="speaker">Carl Capolingua</span> <span class="verdict v-buy ml-1">Buy</span><br>A 9% yield, net inflows, and a discount to global peers. Key-person risk looks overdone.</p>
+          <p class="text-[1.08rem]"><span class="speaker">Steve Johnson</span> <span class="verdict v-hold ml-1">Hold</span><br>I like it, but fund-flow businesses turn quickly. I'd want to own it cheaper.</p>
+        </div>
+        <div class="py-5">
+          <h3 class="ff-d text-xl font-500 mb-2">National Australia Bank <span class="ff-m text-sm text-lw-muted">(NAB)</span></h3>
+          <p class="text-[1.08rem]" style="margin-bottom:1rem"><span class="speaker">Steve Johnson</span> <span class="verdict v-hold ml-1">Hold</span><br>Best-run of the big four on the business-bank side, but priced for it.</p>
+          <p class="text-[1.08rem]"><span class="speaker">Carl Capolingua</span> <span class="verdict v-sell ml-1">Sell</span><br>The chart's rolling over and the yield no longer compensates. I'd take profits.</p>
         </div>
       </div>
-    </div>
 
-    <!-- tags + author -->
-    <div class="flex flex-wrap items-center gap-2 mt-10 pt-6 border-t rule">
-      <span class="ts mr-1">FILED UNDER</span>
-      <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Shares">Shares +</button>
-      <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Income">Income +</button>
-    </div>
-    <div class="mt-8 border border-lw-line bg-white p-5 flex items-start gap-4">
-      <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-14 h-14 rounded-full flex-shrink-0">
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center justify-between gap-3 mb-1"><a href="author.html" class="ff-d font-600 text-lg hover:text-lw-oxblood">Vishal Teckchandani</a><button class="follow-btn follow-pill px-4 py-1.5" data-compact data-follow="author:Vishal Teckchandani">Follow</button></div>
-        <p class="ff-b text-[15px] text-lw-muted leading-snug">Lead Investment Writer & Presenter. Host of Buy Hold Sell and Livewire's video programming.</p>
+      <div class="flex flex-wrap items-center gap-2 mt-7 pt-5 border-t rule">
+        <span class="ts mr-1">FILED UNDER</span>
+        <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Shares">Shares +</button>
+        <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Income">Income +</button>
+      </div>
+      <div class="mt-6 border border-lw-line bg-white p-5 flex items-start gap-4">
+        <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-14 h-14 rounded-full flex-shrink-0">
+        <div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-3 mb-1"><a href="author.html" class="ff-d font-600 text-lg hover:text-lw-oxblood">Vishal Teckchandani</a><button class="follow-btn follow-pill px-4 py-1.5" data-compact data-follow="author:Vishal Teckchandani">Follow</button></div><p class="ff-b text-[15px] text-lw-muted leading-snug">Lead Investment Writer & Presenter. Host of Buy Hold Sell and Livewire's video programming.</p></div>
       </div>
     </div>
-  </article>
+  </div>
 
   <!-- More -->
-  <section class="max-w-[1180px] mx-auto px-5 mt-14">
+  <section class="max-w-[1240px] mx-auto px-5 mt-4 mb-14">
     <div class="flex items-center gap-3 mb-6"><span class="kicker text-lw-ink" style="color:#16130E">More Buy Hold Sell</span><span class="flex-1 border-t rule"></span></div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <article class="story group"><a href="article-video.html" class="imgz block aspect-[16/10] mb-3 relative"><img src="assets/img/video-banks.jpg" alt=""><span style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:54px;height:54px;border-radius:9999px;background:rgba(22,19,14,.78);display:grid;place-items:center"><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a><a href="topics.html" class="kicker">Video · ETFs</a><a href="article-video.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">9 ETFs & LITs to build a winning multi-asset portfolio</h3></a><div class="ts mt-1.5">12 min watch</div></article>
-      <article class="story group"><a href="article.html" class="imgz block aspect-[16/10] mb-3"><img src="assets/img/equities.jpg" alt=""></a><a href="topics.html" class="kicker">Equities</a><a href="article.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">Where to catch the investment waves in 2026</h3></a><div class="ts mt-1.5">By Steve Johnson</div></article>
-      <article class="story group"><a href="article-feature.html" class="imgz block aspect-[16/10] mb-3"><img src="assets/img/gale.jpg" alt=""></a><a href="topics.html" class="kicker">The Feature</a><a href="article-feature.html" class="block mt-1"><h3 class="hl text-xl font-500 leading-snug">Into the gale: positioning for a market few see coming</h3></a><div class="ts mt-1.5">By Chris Conway</div></article>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-8">
+      <article class="story group"><a href="video.html" class="imgz block aspect-[16/10] mb-2.5 relative"><img src="assets/img/video-banks.jpg" alt=""><span style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:46px;height:46px;border-radius:9999px;background:rgba(22,19,14,.78);display:grid;place-items:center"><svg class="w-4 h-4" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a><a href="video.html" class="kicker">Video · ETFs</a><a href="video.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-snug">9 ETFs & LITs to build a multi-asset portfolio</h3></a><div class="ts mt-1.5">12 MIN WATCH</div></article>
+      <article class="story group"><a href="video.html" class="imgz block aspect-[16/10] mb-2.5 relative"><img src="assets/img/healthcare-vs.jpg" alt=""><span style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:46px;height:46px;border-radius:9999px;background:rgba(22,19,14,.78);display:grid;place-items:center"><svg class="w-4 h-4" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a><a href="video.html" class="kicker">Video · Shares</a><a href="video.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-snug">Healthcare vs real estate: which wins 2026?</h3></a><div class="ts mt-1.5">14 MIN WATCH</div></article>
+      <article class="story group"><a href="video.html" class="imgz block aspect-[16/10] mb-2.5 relative"><img src="assets/img/bhs-marshall.jpg" alt=""><span style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:46px;height:46px;border-radius:9999px;background:rgba(22,19,14,.78);display:grid;place-items:center"><svg class="w-4 h-4" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a><a href="video.html" class="kicker">Video · Inside the Portfolio</a><a href="video.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-snug">Geof Marshall on the holdings he's backing for 2026</h3></a><div class="ts mt-1.5">18 MIN WATCH</div></article>
+      <article class="story group"><a href="video.html" class="imgz block aspect-[16/10] mb-2.5 relative"><img src="assets/img/video-colending.jpg" alt=""><span style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:46px;height:46px;border-radius:9999px;background:rgba(22,19,14,.78);display:grid;place-items:center"><svg class="w-4 h-4" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a><a href="video.html" class="kicker">Video · Income</a><a href="video.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-snug">Co-lending explained, with Gianpaolo Pellegrini</h3></a><div class="ts mt-1.5">9 MIN WATCH</div></article>
     </div>
   </section>
 
-  <footer class="bg-lw-ink text-lw-paper mt-14">
-    <div class="max-w-[1180px] mx-auto px-5 py-12">
+  <footer class="bg-lw-ink text-lw-paper">
+    <div class="max-w-[1240px] mx-auto px-5 py-12">
       <div class="flex flex-col md:flex-row justify-between gap-10">
         <div class="max-w-xs"><img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-10 mb-4"><p class="ff-b text-[15px]" style="color:rgba(251,250,246,.45)">Investment insights from Australia's best fund managers.</p></div>
         <div class="grid grid-cols-3 gap-10 navlink" style="color:rgba(251,250,246,.6)">
-          <div><div class="text-lw-gold mb-3">Content</div><div class="space-y-2.5"><a href="topics.html" class="block hover:text-white">Topics</a><a href="contributors.html" class="block hover:text-white">Contributors</a><a href="article-feature.html" class="block hover:text-white">Features</a></div></div>
+          <div><div class="text-lw-gold mb-3">Content</div><div class="space-y-2.5"><a href="topics.html" class="block hover:text-white">Topics</a><a href="contributors.html" class="block hover:text-white">Contributors</a><a href="video.html" class="block hover:text-white">Video</a></div></div>
           <div><div class="text-lw-gold mb-3">Company</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">About</a><a href="#" class="block hover:text-white">Contact</a></div></div>
           <div><div class="text-lw-gold mb-3">Follow</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">LinkedIn</a><a href="#" class="block hover:text-white">YouTube</a></div></div>
         </div>
