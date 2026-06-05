@@ -115,10 +115,66 @@
     setTab(def);
   }
 
+  // Hover-to-preview: mount a muted, autoplaying YouTube iframe over a video
+  // card's thumbnail on hover (desktop only), remove it on mouse-out.
+  // Source resolution: the card's own [data-preview] wins; otherwise the
+  // nearest ancestor [data-list] (a playlist) is used. Value forms:
+  //   "VIDEOID"        → loops that single video, muted
+  //   "list:PLAYLIST"  → autoplays the playlist, muted
+  function initVideoPreviews() {
+    if (!window.matchMedia('(hover: hover)').matches) return; // skip touch devices
+    const srcFor = (val) => {
+      if (val.indexOf('list:') === 0) {
+        const id = val.slice(5);
+        return 'https://www.youtube-nocookie.com/embed/videoseries?list=' + id +
+          '&autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1';
+      }
+      return 'https://www.youtube-nocookie.com/embed/' + val +
+        '?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=' + val + '&start=1';
+    };
+    // Collect targets: any .imgz that has its own data-preview, or sits inside a [data-list].
+    const seen = new Set();
+    const targets = [];
+    document.querySelectorAll('.imgz[data-preview]').forEach((el) => { targets.push(el); seen.add(el); });
+    document.querySelectorAll('[data-preview]').forEach((el) => {
+      const z = el.matches('.imgz') ? el : el.querySelector('.imgz');
+      if (z && !seen.has(z)) { targets.push(z); seen.add(z); }
+    });
+    document.querySelectorAll('[data-list]').forEach((host) => {
+      host.querySelectorAll('.imgz').forEach((z) => { if (!seen.has(z)) { targets.push(z); seen.add(z); } });
+    });
+
+    targets.forEach((z) => {
+      const host = z.closest('[data-preview]') || z.closest('[data-list]');
+      const raw = (z.getAttribute('data-preview')) ||
+                  (host && host.getAttribute('data-preview')) ||
+                  (host && host.getAttribute('data-list') ? 'list:' + host.getAttribute('data-list') : null);
+      if (!raw) return;
+      if (getComputedStyle(z).position === 'static') z.style.position = 'relative';
+      let timer;
+      const mount = () => {
+        if (z.querySelector('.lw-prev')) return;
+        const f = document.createElement('iframe');
+        f.className = 'lw-prev';
+        f.src = srcFor(raw);
+        f.setAttribute('tabindex', '-1');
+        f.setAttribute('aria-hidden', 'true');
+        f.allow = 'autoplay; encrypted-media; picture-in-picture';
+        f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5;pointer-events:none;opacity:0;transition:opacity .25s ease;';
+        z.appendChild(f);
+        requestAnimationFrame(() => { f.style.opacity = '1'; });
+      };
+      const unmount = () => { const f = z.querySelector('.lw-prev'); if (f) f.remove(); };
+      z.addEventListener('mouseenter', () => { timer = setTimeout(mount, 220); });
+      z.addEventListener('mouseleave', () => { clearTimeout(timer); unmount(); });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initFollowButtons();
     initPopovers();
     initFeedToggle();
+    initVideoPreviews();
     document.querySelectorAll('[data-following-count]').forEach((el) => { el.textContent = following.size; });
   });
 })();
