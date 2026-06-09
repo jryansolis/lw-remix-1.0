@@ -255,6 +255,7 @@
     if (document.getElementById('lwx-style')) return;
     const css = `
     .lwx-backdrop{position:fixed;inset:0;z-index:120;background:rgba(13,11,8,.55);backdrop-filter:saturate(120%) blur(2px);display:flex;justify-content:center;align-items:flex-start;padding:14vh 16px 16px;opacity:0;transition:opacity .18s ease}
+    .lwx-backdrop[hidden]{display:none!important}
     .lwx-backdrop.show{opacity:1}
     .lwx-search{width:100%;max-width:620px;background:#FBFAF6;border:1px solid #E4DFD4;box-shadow:0 40px 90px -30px rgba(13,11,8,.5);transform:translateY(-8px);transition:transform .18s ease}
     .lwx-backdrop.show .lwx-search{transform:translateY(0)}
